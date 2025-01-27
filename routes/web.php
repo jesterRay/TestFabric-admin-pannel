@@ -369,6 +369,16 @@ Route::controller(TPVSController::class)->group(function () {
     Route::put('/tpvs/{id}/content', 'contentUpdate')->name('tpvs.content.update');
 });
 
+// Master Category Route
+Route::controller(MasterCategoryController::class)->group(function () {
+    Route::get('/category', 'index')->name('category.index');
+    Route::get('/category/create', 'create')->name('category.create');
+    Route::post('/category', 'save')->name('category.save');
+    Route::get('/category/{id}/edit', 'edit')->name('category.edit');
+    Route::put('/category/{id}', 'update')->name('category.update');
+    Route::get('/category/{id}/destroy', 'destroy')->name('category.destroy');
+});
+
 
 
 
