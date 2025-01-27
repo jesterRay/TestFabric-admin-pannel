@@ -41,6 +41,7 @@ use App\Http\Controllers\QuickLinkController;
 use App\Http\Controllers\HeaderLogoController;
 use App\Http\Controllers\TestMethodController;
 use App\Http\Controllers\layouts\WithoutNavbar;
+use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\user_interface\Alerts;
 use App\Http\Controllers\user_interface\Badges;
 use App\Http\Controllers\user_interface\Footer;
@@ -50,8 +51,8 @@ use App\Http\Controllers\user_interface\Toasts;
 use App\Http\Controllers\CountryAgentController;
 use App\Http\Controllers\user_interface\Buttons;
 use App\Http\Controllers\extended_ui\TextDivider;
-use App\Http\Controllers\InterestGroupController;
 
+use App\Http\Controllers\InterestGroupController;
 use App\Http\Controllers\user_interface\Carousel;
 use App\Http\Controllers\user_interface\Collapse;
 use App\Http\Controllers\user_interface\Progress;
@@ -377,6 +378,16 @@ Route::controller(MasterCategoryController::class)->group(function () {
     Route::get('/category/{id}/edit', 'edit')->name('category.edit');
     Route::put('/category/{id}', 'update')->name('category.update');
     Route::get('/category/{id}/destroy', 'destroy')->name('category.destroy');
+});
+
+// Master Category Route
+Route::controller(SubCategoryController::class)->group(function () {
+    Route::get('/sub-category', 'index')->name('sub-category.index');
+    Route::get('/sub-category/create', 'create')->name('sub-category.create');
+    Route::post('/sub-category', 'save')->name('sub-category.save');
+    Route::get('/sub-category/{id}/edit', 'edit')->name('sub-category.edit');
+    Route::put('/sub-category/{id}', 'update')->name('sub-category.update');
+    Route::get('/sub-category/{id}/destroy', 'destroy')->name('sub-category.destroy');
 });
 
 
