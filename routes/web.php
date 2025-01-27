@@ -57,6 +57,7 @@ use App\Http\Controllers\user_interface\Collapse;
 use App\Http\Controllers\user_interface\Progress;
 use App\Http\Controllers\user_interface\Spinners;
 use App\Http\Controllers\form_elements\BasicInput;
+use App\Http\Controllers\MasterCategoryController;
 use App\Http\Controllers\SurveyQuestionController;
 use App\Http\Controllers\SurveyResponseController;
 use App\Http\Controllers\user_interface\Accordion;
@@ -366,7 +367,16 @@ Route::controller(TPVSController::class)->group(function () {
     Route::post('/tpvs/serial/update', 'updateSerial')->name('tpvs.serial.update');
 
     Route::put('/tpvs/{id}/content', 'contentUpdate')->name('tpvs.content.update');
-    // Route::put('/tpvs/{id}/info', 'infoUpdate')->name('tpvs.info.update');
+});
+
+// Master Category Route
+Route::controller(MasterCategoryController::class)->group(function () {
+    Route::get('/category', 'index')->name('category.index');
+    Route::get('/category/create', 'create')->name('category.create');
+    Route::post('/category', 'save')->name('category.save');
+    Route::get('/category/{id}/edit', 'edit')->name('category.edit');
+    Route::put('/category/{id}', 'update')->name('category.update');
+    Route::get('/category/{id}/destroy', 'destroy')->name('category.destroy');
 });
 
 
