@@ -54,6 +54,7 @@ use App\Http\Controllers\user_interface\Navbar;
 
 use App\Http\Controllers\user_interface\Toasts;
 use App\Http\Controllers\CountryAgentController;
+use App\Http\Controllers\PriceBreakUpController;
 use App\Http\Controllers\user_interface\Buttons;
 use App\Http\Controllers\extended_ui\TextDivider;
 use App\Http\Controllers\InterestGroupController;
@@ -449,6 +450,16 @@ Route::controller(RangeFormatController::class)->group(function () {
     Route::get('/range-format/{id}/edit', 'edit')->name('range-format.edit');
     Route::put('/range-format/{id}', 'update')->name('range-format.update');
     Route::get('/range-format/{id}/destroy', 'destroy')->name('range-format.destroy');
+});
+
+// Price Break Up Route
+Route::controller(PriceBreakUpController::class)->group(function () {
+    Route::get('/price-break-up', 'index')->name('price-break-up.index');
+    Route::get('/price-break-up/create', 'create')->name('price-break-up.create');
+    Route::post('/price-break-up', 'save')->name('price-break-up.save');
+    Route::get('/price-break-up/{id}/edit', 'edit')->name('price-break-up.edit');
+    Route::put('/price-break-up/{id}', 'update')->name('price-break-up.update');
+    Route::get('/price-break-up/{id}/destroy', 'destroy')->name('price-break-up.destroy');
 });
 
 
