@@ -79,6 +79,7 @@ use App\Http\Controllers\extended_ui\PerfectScrollbar;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\VerificationHistoryController;
+use App\Http\Controllers\MinimumOrderQuantityController;
 use App\Http\Controllers\AssociationAndPartnerController;
 use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\pages\AccountSettingsConnections;
@@ -415,6 +416,17 @@ Route::controller(AvailableInController::class)->group(function () {
     Route::get('/available-in/{id}/edit', 'edit')->name('available-in.edit');
     Route::put('/available-in/{id}', 'update')->name('available-in.update');
     Route::get('/available-in/{id}/destroy', 'destroy')->name('available-in.destroy');
+});
+
+
+// Minimum Order Quantity Route
+Route::controller(MinimumOrderQuantityController::class)->group(function () {
+    Route::get('/min-order-quantity', 'index')->name('min-order-quantity.index');
+    Route::get('/min-order-quantity/create', 'create')->name('min-order-quantity.create');
+    Route::post('/min-order-quantity', 'save')->name('min-order-quantity.save');
+    Route::get('/min-order-quantity/{id}/edit', 'edit')->name('min-order-quantity.edit');
+    Route::put('/min-order-quantity/{id}', 'update')->name('min-order-quantity.update');
+    Route::get('/min-order-quantity/{id}/destroy', 'destroy')->name('min-order-quantity.destroy');
 });
 
 

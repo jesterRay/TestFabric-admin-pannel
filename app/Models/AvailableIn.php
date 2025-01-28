@@ -101,4 +101,6 @@ class AvailableIn extends Model
             throw new \Exception("Error deleting Available In: " . $e->getMessage());
         }
     }
+
+    
 }

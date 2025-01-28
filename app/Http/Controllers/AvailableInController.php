@@ -87,4 +87,7 @@ class AvailableInController extends Controller
                 ->with(['error' => $e->getMessage()]);
         }
     }
+
+
+    
 }
