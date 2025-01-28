@@ -41,6 +41,7 @@ use App\Http\Controllers\layouts\WithoutMenu;
 use App\Http\Controllers\QuickLinkController;
 use App\Http\Controllers\HeaderLogoController;
 use App\Http\Controllers\TestMethodController;
+use App\Http\Controllers\AvailableInController;
 use App\Http\Controllers\layouts\WithoutNavbar;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\user_interface\Alerts;
@@ -50,8 +51,8 @@ use App\Http\Controllers\user_interface\Modals;
 use App\Http\Controllers\user_interface\Navbar;
 use App\Http\Controllers\user_interface\Toasts;
 use App\Http\Controllers\CountryAgentController;
-use App\Http\Controllers\user_interface\Buttons;
 
+use App\Http\Controllers\user_interface\Buttons;
 use App\Http\Controllers\extended_ui\TextDivider;
 use App\Http\Controllers\InterestGroupController;
 use App\Http\Controllers\user_interface\Carousel;
@@ -404,6 +405,16 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/product/subcategory/delete', 'subcategoryDelete')->name('product.subcategory.delete'); //to show view file
     Route::post('/product/subcategory/destroy', 'subcategoryDestroy')->name('product.subcategory.destroy'); //to delete 
 
+});
+
+// Available In Route
+Route::controller(AvailableInController::class)->group(function () {
+    Route::get('/available-in', 'index')->name('available-in.index');
+    Route::get('/available-in/create', 'create')->name('available-in.create');
+    Route::post('/available-in', 'save')->name('available-in.save');
+    Route::get('/available-in/{id}/edit', 'edit')->name('available-in.edit');
+    Route::put('/available-in/{id}', 'update')->name('available-in.update');
+    Route::get('/available-in/{id}/destroy', 'destroy')->name('available-in.destroy');
 });
 
 
