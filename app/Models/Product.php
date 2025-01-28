@@ -20,6 +20,7 @@ class Product extends Model
         }
     }
 
+
     // Get Products for DataTable
     public function getProductsForDataTable(){
         try {
@@ -41,10 +42,29 @@ class Product extends Model
                     ->order(function ($query) {
                         $query->orderBy('product__Name', 'asc');
                     })
-                    ->addColumn('action', function ($row) {
-                        $edit_link = route('product.edit', $row->product__ID);
-                        $delete_link = route('product.destroy', $row->product__ID);
-                        return view('components.action-button', compact('edit_link', 'delete_link'))->render();
+                    ->addColumn('action', function($row) {
+                        // You can generate the links dynamically, assuming you have the data available
+                        // $viewLink = route('survey.view', ['id' => $row->id]);
+                        // $editLink = route('survey.edit', ['id' => $row->id]);
+                        $editLink = route('product.edit', $row->product__ID);
+                        $deleteLink = route('product.destroy', $row->product__ID);
+                        $manageFileLink = route('upload-related-document.create', $row->product__ID);
+                        $addStandardLink = "";
+
+                        
+                        // Returning the HTML for the action column
+                        return '
+                            <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="' . $editLink . '"><i class="bx bx-edit-alt me-2"></i> Edit</a>
+                                    <a class="dropdown-item" href="' . $deleteLink . '"><i class="bx bx-trash me-2"></i> Delete</a>
+                                    <a class="dropdown-item" href="' . $manageFileLink . '"><i class="bx bx-file-blank me-2"></i> Manage file</a>  
+                                </div>
+                            </div>
+                        ';
                     })
                     ->rawColumns(['action'])
                     ->addIndexColumn()

@@ -84,6 +84,7 @@ use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\VerificationHistoryController;
 use App\Http\Controllers\MinimumOrderQuantityController;
 use App\Http\Controllers\AssociationAndPartnerController;
+use App\Http\Controllers\UploadRelatedDocumentController;
 use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\pages\AccountSettingsConnections;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
@@ -460,6 +461,14 @@ Route::controller(PriceBreakUpController::class)->group(function () {
     Route::get('/price-break-up/{id}/edit', 'edit')->name('price-break-up.edit');
     Route::put('/price-break-up/{id}', 'update')->name('price-break-up.update');
     Route::get('/price-break-up/{id}/destroy', 'destroy')->name('price-break-up.destroy');
+});
+
+// Upload Related Document Route
+Route::controller(UploadRelatedDocumentController::class)->group(function () {
+    Route::get('/upload-related-document', 'index')->name('upload-related-document.index');
+    Route::get('/upload-related-document/create/{id?}', 'create')->name('upload-related-document.create');
+    Route::post('/upload-related-document', 'save')->name('upload-related-document.save');
+    Route::get('/upload-related-document/{id}/destroy', 'destroy')->name('upload-related-document.destroy');
 });
 
 
