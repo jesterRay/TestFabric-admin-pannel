@@ -124,8 +124,7 @@ class SubCategory extends Model
 
 
     // Update Subcategory
-    public function updateSubCategory($id, $data, $subcategoryImage = null, $bannerImage = null)
-    {
+    public function updateSubCategory($id, $data, $subcategoryImage = null, $bannerImage = null){
         try {
             $query = "
                 UPDATE testfabrics_subcategory 

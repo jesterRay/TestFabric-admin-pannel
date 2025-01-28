@@ -30,6 +30,7 @@ use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\layouts\Container;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\NextStepController;
@@ -50,8 +51,8 @@ use App\Http\Controllers\user_interface\Navbar;
 use App\Http\Controllers\user_interface\Toasts;
 use App\Http\Controllers\CountryAgentController;
 use App\Http\Controllers\user_interface\Buttons;
-use App\Http\Controllers\extended_ui\TextDivider;
 
+use App\Http\Controllers\extended_ui\TextDivider;
 use App\Http\Controllers\InterestGroupController;
 use App\Http\Controllers\user_interface\Carousel;
 use App\Http\Controllers\user_interface\Collapse;
@@ -388,6 +389,21 @@ Route::controller(SubCategoryController::class)->group(function () {
     Route::get('/sub-category/{id}/edit', 'edit')->name('sub-category.edit');
     Route::put('/sub-category/{id}', 'update')->name('sub-category.update');
     Route::get('/sub-category/{id}/destroy', 'destroy')->name('sub-category.destroy');
+});
+
+// Product Route
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/product', 'index')->name('product.index');
+    Route::get('/product/create', 'create')->name('product.create');
+    Route::post('/product', 'save')->name('product.save');
+    Route::get('/product/{id}/edit', 'edit')->name('product.edit');
+    Route::put('/product/{id}', 'update')->name('product.update');
+    Route::get('/product/{id}/destroy', 'destroy')->name('product.destroy');
+
+    // delete product by subcategory
+    Route::get('/product/subcategory/delete', 'subcategoryDelete')->name('product.subcategory.delete'); //to show view file
+    Route::post('/product/subcategory/destroy', 'subcategoryDestroy')->name('product.subcategory.destroy'); //to delete 
+
 });
 
 

@@ -115,8 +115,7 @@ class SubCategoryController extends Controller
 
 
     // Destroy Subcategory
-    public function destroy($id)
-    {
+    public function destroy($id){
         try {
             // Call the model to delete the subcategory
             $result = (new SubCategory)->deleteSubCategory($id);
@@ -130,4 +129,6 @@ class SubCategoryController extends Controller
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
+
+    
 }
