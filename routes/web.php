@@ -44,14 +44,15 @@ use App\Http\Controllers\HeaderLogoController;
 use App\Http\Controllers\TestMethodController;
 use App\Http\Controllers\AvailableInController;
 use App\Http\Controllers\layouts\WithoutNavbar;
+use App\Http\Controllers\RangeFormatController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\user_interface\Alerts;
 use App\Http\Controllers\user_interface\Badges;
 use App\Http\Controllers\user_interface\Footer;
 use App\Http\Controllers\user_interface\Modals;
 use App\Http\Controllers\user_interface\Navbar;
-use App\Http\Controllers\user_interface\Toasts;
 
+use App\Http\Controllers\user_interface\Toasts;
 use App\Http\Controllers\CountryAgentController;
 use App\Http\Controllers\user_interface\Buttons;
 use App\Http\Controllers\extended_ui\TextDivider;
@@ -438,6 +439,16 @@ Route::controller(UnitController::class)->group(function () {
     Route::get('/unit/{id}/edit', 'edit')->name('unit.edit');
     Route::put('/unit/{id}', 'update')->name('unit.update');
     Route::get('/unit/{id}/destroy', 'destroy')->name('unit.destroy');
+});
+
+// Range Format Route
+Route::controller(RangeFormatController::class)->group(function () {
+    Route::get('/range-format', 'index')->name('range-format.index');
+    Route::get('/range-format/create', 'create')->name('range-format.create');
+    Route::post('/range-format', 'save')->name('range-format.save');
+    Route::get('/range-format/{id}/edit', 'edit')->name('range-format.edit');
+    Route::put('/range-format/{id}', 'update')->name('range-format.update');
+    Route::get('/range-format/{id}/destroy', 'destroy')->name('range-format.destroy');
 });
 
 
