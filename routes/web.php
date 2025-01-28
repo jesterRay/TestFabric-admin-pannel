@@ -18,6 +18,7 @@ use App\Http\Controllers\icons\Boxicons;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\TPVSController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\cards\CardBasic;
 use App\Http\Controllers\EventController;
@@ -50,8 +51,8 @@ use App\Http\Controllers\user_interface\Footer;
 use App\Http\Controllers\user_interface\Modals;
 use App\Http\Controllers\user_interface\Navbar;
 use App\Http\Controllers\user_interface\Toasts;
-use App\Http\Controllers\CountryAgentController;
 
+use App\Http\Controllers\CountryAgentController;
 use App\Http\Controllers\user_interface\Buttons;
 use App\Http\Controllers\extended_ui\TextDivider;
 use App\Http\Controllers\InterestGroupController;
@@ -427,6 +428,16 @@ Route::controller(MinimumOrderQuantityController::class)->group(function () {
     Route::get('/min-order-quantity/{id}/edit', 'edit')->name('min-order-quantity.edit');
     Route::put('/min-order-quantity/{id}', 'update')->name('min-order-quantity.update');
     Route::get('/min-order-quantity/{id}/destroy', 'destroy')->name('min-order-quantity.destroy');
+});
+
+// Units Route
+Route::controller(UnitController::class)->group(function () {
+    Route::get('/unit', 'index')->name('unit.index');
+    Route::get('/unit/create', 'create')->name('unit.create');
+    Route::post('/unit', 'save')->name('unit.save');
+    Route::get('/unit/{id}/edit', 'edit')->name('unit.edit');
+    Route::put('/unit/{id}', 'update')->name('unit.update');
+    Route::get('/unit/{id}/destroy', 'destroy')->name('unit.destroy');
 });
 
 
