@@ -250,4 +250,105 @@ class ProductController extends Controller
         }
     }
 
+    public function importProduct(){
+        try {
+            $subcategories = (new Product)->getSubcategory();
+            return view('admin.product.import')->with([
+                "subcategories" => $subcategories
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Error: '.$e->getMessage());
+            
+        }
+    }
+    // import product data
+    public function uploadProductData(Request $request){
+        try {
+            $request->validate([
+                'ufile' => 'required|mimes:xlsx|max:2048',
+                'product__Subcategory_Name' => 'required|numeric',
+            ]);
+            
+            $file = $request->file('ufile');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $filePath = public_path('csv/'.$filename);
+            $file->move(public_path('csv'), $filename);
+            
+            $newCsvFile = public_path('csv/'.rand().'.csv');
+            Product::convertXLStoCSV($filePath, $newCsvFile);
+            
+            $spreadsheet = IOFactory::load($filePath);
+            $images = [];
+            
+            foreach ($spreadsheet->getActiveSheet()->getDrawingCollection() as $drawing) {
+                if ($drawing instanceof \PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing) {
+                    ob_start();
+                    call_user_func($drawing->getRenderingFunction(), $drawing->getImageResource());
+                    $imageContents = ob_get_contents();
+                    ob_end_clean();
+                    $extension = 'png';
+                } else {
+                    $zipReader = fopen($drawing->getPath(), 'r');
+                    $imageContents = '';
+                    while (!feof($zipReader)) {
+                        $imageContents .= fread($zipReader, 1024);
+                    }
+                    fclose($zipReader);
+                    $extension = $drawing->getExtension();
+                }
+                
+                $cellId = $drawing->getCoordinates();
+                $imagePath = public_path('product_images/'.$cellId.'.jpg');
+                file_put_contents($imagePath, $imageContents);
+                $images[$cellId] = $imagePath;
+            }
+            
+            $handle = fopen($newCsvFile, 'r');
+            $i = 0;
+            while (($data = fgetcsv($handle, 4096, ",")) !== false) {
+                if ($i > 0) {
+                    Product::processCsvData($data, $request->input('product__Subcategory_Name'), $images, $i);
+                }
+                $i++;
+            }
+            fclose($handle);
+            unlink($filePath);
+            unlink($newCsvFile);
+            
+            return redirect()->route('upload_product_data')->with('success', 'File uploaded successfully!');
+        } catch (\Exception $e) {
+            return redirect()->route('upload_product_data')->with('error', 'Error: '.$e->getMessage());
+        }
+    }
+
+    public function exportProduct(){
+        try {
+            $subcategories = (new Product)->getSubcategory();
+            return view('admin.product.export')->with([
+                "subcategories" => $subcategories
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Error: '.$e->getMessage());
+            
+        }
+    }
+
+    // export product data
+    public function exportProductData(Request $request){
+        $validator = $request->validate([
+            'product_Subcategory_Name' => 'required|numeric',
+        ]);
+
+        
+
+        try {
+            $filePath = (new Product)->exportToExcel($request->input('product_Subcategory_Name'));
+
+            return response()->download($filePath)->deleteFileAfterSend(true);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to generate file: ' . $e->getMessage()], 500);
+        }
+    }
+
+
 }

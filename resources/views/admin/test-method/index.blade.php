@@ -7,7 +7,7 @@
 <div class="row">
   <div class="col-12">
     <x-table 
-        title="Career Management"
+        title="Test Method Management"
         :thead="['#', 'Name', 'Sequence','Status','Actions']" 
         :route="route('test-method.index')"
         :createLink="route('test-method.create')"

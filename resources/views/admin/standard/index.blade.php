@@ -7,7 +7,7 @@
 <div class="row">
   <div class="col-12">
     <x-table 
-        title="Career Management"
+        title="Standard Management"
         :thead="['#', 'Name','Status','Actions']" 
         :route="route('standard.index')"
         :createLink="route('standard.create')"

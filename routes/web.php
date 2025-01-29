@@ -131,7 +131,6 @@ Route::controller(CocController::class)->group(function () {
     Route::get('/coc/add', 'add')->name('coc.add');
     Route::post('/coc/save', 'save')->name('coc.save');
     Route::get('/coc/{id}/delete', 'delete')->name('coc.destroy');
-
 });
 
 // Survey Response route
@@ -230,6 +229,116 @@ Route::controller(InterestGroupController::class)->group(function () {
     Route::put('/interest-group/{id}', 'update')->name('interest-group.update');
     Route::get('/interest-group/{id}/destroy', 'destroy')->name('interest-group.destroy');
 });
+
+// Master Category Route
+Route::controller(MasterCategoryController::class)->group(function () {
+    Route::get('/category', 'index')->name('category.index');
+    Route::get('/category/create', 'create')->name('category.create');
+    Route::post('/category', 'save')->name('category.save');
+    Route::get('/category/{id}/edit', 'edit')->name('category.edit');
+    Route::put('/category/{id}', 'update')->name('category.update');
+    Route::get('/category/{id}/destroy', 'destroy')->name('category.destroy');
+});
+
+// Master Category Route
+Route::controller(SubCategoryController::class)->group(function () {
+    Route::get('/sub-category', 'index')->name('sub-category.index');
+    Route::get('/sub-category/create', 'create')->name('sub-category.create');
+    Route::post('/sub-category', 'save')->name('sub-category.save');
+    Route::get('/sub-category/{id}/edit', 'edit')->name('sub-category.edit');
+    Route::put('/sub-category/{id}', 'update')->name('sub-category.update');
+    Route::get('/sub-category/{id}/destroy', 'destroy')->name('sub-category.destroy');
+});
+
+// Product Route
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/product', 'index')->name('product.index');
+    Route::get('/product/create', 'create')->name('product.create');
+    Route::post('/product', 'save')->name('product.save');
+    Route::get('/product/{id}/edit', 'edit')->name('product.edit');
+    Route::put('/product/{id}', 'update')->name('product.update');
+    Route::get('/product/{id}/destroy', 'destroy')->name('product.destroy');
+
+    // delete product by subcategory
+    Route::get('/product/subcategory/delete', 'subcategoryDelete')->name('product.subcategory.delete'); //to show view file
+    Route::post('/product/subcategory/destroy', 'subcategoryDestroy')->name('product.subcategory.destroy'); //to delete 
+
+    // product standard
+    Route::get('/product/{id}/standard', 'productStandard')->name('product.standard.index'); //to show view file
+    Route::post('/product/{id}/standard', 'productStandardSave')->name('product.standard.save'); //to save view file
+    Route::get('/product/{id}/standard/delete', 'productStandardDestroy')->name('product.standard.destroy'); //to destroy view file
+
+    // import product
+    Route::get('/product/import', 'importProduct')->name('product.import');
+    Route::post('/product/import', 'uploadProductData')->name('product.import.save');
+
+    // export product
+    Route::get('/product/export', 'exportProduct')->name('product.export');
+    Route::post('/product/export', 'exportProductData')->name('product.export.save');
+    
+
+
+});
+
+// Available In Route
+Route::controller(AvailableInController::class)->group(function () {
+    Route::get('/available-in', 'index')->name('available-in.index');
+    Route::get('/available-in/create', 'create')->name('available-in.create');
+    Route::post('/available-in', 'save')->name('available-in.save');
+    Route::get('/available-in/{id}/edit', 'edit')->name('available-in.edit');
+    Route::put('/available-in/{id}', 'update')->name('available-in.update');
+    Route::get('/available-in/{id}/destroy', 'destroy')->name('available-in.destroy');
+});
+
+
+// Minimum Order Quantity Route
+Route::controller(MinimumOrderQuantityController::class)->group(function () {
+    Route::get('/min-order-quantity', 'index')->name('min-order-quantity.index');
+    Route::get('/min-order-quantity/create', 'create')->name('min-order-quantity.create');
+    Route::post('/min-order-quantity', 'save')->name('min-order-quantity.save');
+    Route::get('/min-order-quantity/{id}/edit', 'edit')->name('min-order-quantity.edit');
+    Route::put('/min-order-quantity/{id}', 'update')->name('min-order-quantity.update');
+    Route::get('/min-order-quantity/{id}/destroy', 'destroy')->name('min-order-quantity.destroy');
+});
+
+// Upload Related Document Route
+Route::controller(UploadRelatedDocumentController::class)->group(function () {
+    Route::get('/upload-related-document', 'index')->name('upload-related-document.index');
+    Route::get('/upload-related-document/create/{id?}', 'create')->name('upload-related-document.create');
+    Route::post('/upload-related-document', 'save')->name('upload-related-document.save');
+    Route::get('/upload-related-document/{id}/destroy', 'destroy')->name('upload-related-document.destroy');
+});
+
+// Price Break Up Route
+Route::controller(PriceBreakUpController::class)->group(function () {
+    Route::get('/price-break-up', 'index')->name('price-break-up.index');
+    Route::get('/price-break-up/create', 'create')->name('price-break-up.create');
+    Route::post('/price-break-up', 'save')->name('price-break-up.save');
+    Route::get('/price-break-up/{id}/edit', 'edit')->name('price-break-up.edit');
+    Route::put('/price-break-up/{id}', 'update')->name('price-break-up.update');
+    Route::get('/price-break-up/{id}/destroy', 'destroy')->name('price-break-up.destroy');
+});
+
+// Units Route
+Route::controller(UnitController::class)->group(function () {
+    Route::get('/unit', 'index')->name('unit.index');
+    Route::get('/unit/create', 'create')->name('unit.create');
+    Route::post('/unit', 'save')->name('unit.save');
+    Route::get('/unit/{id}/edit', 'edit')->name('unit.edit');
+    Route::put('/unit/{id}', 'update')->name('unit.update');
+    Route::get('/unit/{id}/destroy', 'destroy')->name('unit.destroy');
+});
+
+// Range Format Route
+Route::controller(RangeFormatController::class)->group(function () {
+    Route::get('/range-format', 'index')->name('range-format.index');
+    Route::get('/range-format/create', 'create')->name('range-format.create');
+    Route::post('/range-format', 'save')->name('range-format.save');
+    Route::get('/range-format/{id}/edit', 'edit')->name('range-format.edit');
+    Route::put('/range-format/{id}', 'update')->name('range-format.update');
+    Route::get('/range-format/{id}/destroy', 'destroy')->name('range-format.destroy');
+});
+
 
 // Standards route
 Route::controller(StandardController::class)->group(function () {
@@ -376,107 +485,6 @@ Route::controller(TPVSController::class)->group(function () {
 
     Route::put('/tpvs/{id}/content', 'contentUpdate')->name('tpvs.content.update');
 });
-
-// Master Category Route
-Route::controller(MasterCategoryController::class)->group(function () {
-    Route::get('/category', 'index')->name('category.index');
-    Route::get('/category/create', 'create')->name('category.create');
-    Route::post('/category', 'save')->name('category.save');
-    Route::get('/category/{id}/edit', 'edit')->name('category.edit');
-    Route::put('/category/{id}', 'update')->name('category.update');
-    Route::get('/category/{id}/destroy', 'destroy')->name('category.destroy');
-});
-
-// Master Category Route
-Route::controller(SubCategoryController::class)->group(function () {
-    Route::get('/sub-category', 'index')->name('sub-category.index');
-    Route::get('/sub-category/create', 'create')->name('sub-category.create');
-    Route::post('/sub-category', 'save')->name('sub-category.save');
-    Route::get('/sub-category/{id}/edit', 'edit')->name('sub-category.edit');
-    Route::put('/sub-category/{id}', 'update')->name('sub-category.update');
-    Route::get('/sub-category/{id}/destroy', 'destroy')->name('sub-category.destroy');
-});
-
-// Product Route
-Route::controller(ProductController::class)->group(function () {
-    Route::get('/product', 'index')->name('product.index');
-    Route::get('/product/create', 'create')->name('product.create');
-    Route::post('/product', 'save')->name('product.save');
-    Route::get('/product/{id}/edit', 'edit')->name('product.edit');
-    Route::put('/product/{id}', 'update')->name('product.update');
-    Route::get('/product/{id}/destroy', 'destroy')->name('product.destroy');
-
-    // delete product by subcategory
-    Route::get('/product/subcategory/delete', 'subcategoryDelete')->name('product.subcategory.delete'); //to show view file
-    Route::post('/product/subcategory/destroy', 'subcategoryDestroy')->name('product.subcategory.destroy'); //to delete 
-
-    // product standard
-    Route::get('/product/{id}/standard', 'productStandard')->name('product.standard.index'); //to show view file
-    Route::post('/product/{id}/standard', 'productStandardSave')->name('product.standard.save'); //to save view file
-    Route::get('/product/{id}/standard/delete', 'productStandardDestroy')->name('product.standard.destroy'); //to destroy view file
-
-
-});
-
-// Available In Route
-Route::controller(AvailableInController::class)->group(function () {
-    Route::get('/available-in', 'index')->name('available-in.index');
-    Route::get('/available-in/create', 'create')->name('available-in.create');
-    Route::post('/available-in', 'save')->name('available-in.save');
-    Route::get('/available-in/{id}/edit', 'edit')->name('available-in.edit');
-    Route::put('/available-in/{id}', 'update')->name('available-in.update');
-    Route::get('/available-in/{id}/destroy', 'destroy')->name('available-in.destroy');
-});
-
-
-// Minimum Order Quantity Route
-Route::controller(MinimumOrderQuantityController::class)->group(function () {
-    Route::get('/min-order-quantity', 'index')->name('min-order-quantity.index');
-    Route::get('/min-order-quantity/create', 'create')->name('min-order-quantity.create');
-    Route::post('/min-order-quantity', 'save')->name('min-order-quantity.save');
-    Route::get('/min-order-quantity/{id}/edit', 'edit')->name('min-order-quantity.edit');
-    Route::put('/min-order-quantity/{id}', 'update')->name('min-order-quantity.update');
-    Route::get('/min-order-quantity/{id}/destroy', 'destroy')->name('min-order-quantity.destroy');
-});
-
-// Units Route
-Route::controller(UnitController::class)->group(function () {
-    Route::get('/unit', 'index')->name('unit.index');
-    Route::get('/unit/create', 'create')->name('unit.create');
-    Route::post('/unit', 'save')->name('unit.save');
-    Route::get('/unit/{id}/edit', 'edit')->name('unit.edit');
-    Route::put('/unit/{id}', 'update')->name('unit.update');
-    Route::get('/unit/{id}/destroy', 'destroy')->name('unit.destroy');
-});
-
-// Range Format Route
-Route::controller(RangeFormatController::class)->group(function () {
-    Route::get('/range-format', 'index')->name('range-format.index');
-    Route::get('/range-format/create', 'create')->name('range-format.create');
-    Route::post('/range-format', 'save')->name('range-format.save');
-    Route::get('/range-format/{id}/edit', 'edit')->name('range-format.edit');
-    Route::put('/range-format/{id}', 'update')->name('range-format.update');
-    Route::get('/range-format/{id}/destroy', 'destroy')->name('range-format.destroy');
-});
-
-// Price Break Up Route
-Route::controller(PriceBreakUpController::class)->group(function () {
-    Route::get('/price-break-up', 'index')->name('price-break-up.index');
-    Route::get('/price-break-up/create', 'create')->name('price-break-up.create');
-    Route::post('/price-break-up', 'save')->name('price-break-up.save');
-    Route::get('/price-break-up/{id}/edit', 'edit')->name('price-break-up.edit');
-    Route::put('/price-break-up/{id}', 'update')->name('price-break-up.update');
-    Route::get('/price-break-up/{id}/destroy', 'destroy')->name('price-break-up.destroy');
-});
-
-// Upload Related Document Route
-Route::controller(UploadRelatedDocumentController::class)->group(function () {
-    Route::get('/upload-related-document', 'index')->name('upload-related-document.index');
-    Route::get('/upload-related-document/create/{id?}', 'create')->name('upload-related-document.create');
-    Route::post('/upload-related-document', 'save')->name('upload-related-document.save');
-    Route::get('/upload-related-document/{id}/destroy', 'destroy')->name('upload-related-document.destroy');
-});
-
 
 
 
