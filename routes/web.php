@@ -410,6 +410,12 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/product/subcategory/delete', 'subcategoryDelete')->name('product.subcategory.delete'); //to show view file
     Route::post('/product/subcategory/destroy', 'subcategoryDestroy')->name('product.subcategory.destroy'); //to delete 
 
+    // product standard
+    Route::get('/product/{id}/standard', 'productStandard')->name('product.standard.index'); //to show view file
+    Route::post('/product/{id}/standard', 'productStandardSave')->name('product.standard.save'); //to save view file
+    Route::get('/product/{id}/standard/delete', 'productStandardDestroy')->name('product.standard.destroy'); //to destroy view file
+
+
 });
 
 // Available In Route

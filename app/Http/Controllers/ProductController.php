@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    
     // Show Product List
     public function index(Request $request){
         try {
@@ -201,4 +202,52 @@ class ProductController extends Controller
             return redirect()->back()->with(['error' => $th->getMessage()]);
         }
     }
+
+    // to show the index product standard
+    public function productStandard(Request $request, $id){
+        try {
+
+            if($request->ajax()){
+                $standard = (new Product)->getProductByStandardForDataTable($id);
+                return $standard;
+            }
+
+            $standardOptions = (new Product)->getStandard();
+            return view('admin.product.product-standard')->with([
+                'product_id' => $id,
+                "standardOptions" => $standardOptions
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['error' => $th->getMessage()]);
+        }
+    }
+    
+    public function productStandardSave($id, Request $request){
+        // Validate the incoming request
+        $request->validate([
+            'standard_id' => 'required|integer',  // Ensure standard_id is an integer
+        ]);
+
+        $standardId = $request->input('standard_id');
+        
+        try {
+            // Pass the product ID and standard ID to the model method
+            (new Product)->saveProductStandardMethods($id, $standardId);
+
+            return redirect()->back()->with(['success' => 'Product assigned to standard successfully!']);
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
+    }
+
+    // to delete the existing product standard
+    public function productStandardDestroy($id){
+        try {
+            $result = (new Product)->deleteProductStandard($id);
+            return redirect()->back()->with('success','Product standard deleted successfully');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with(['error' => $th->getMessage()]);
+        }
+    }
+
 }

@@ -49,8 +49,7 @@ class Product extends Model
                         $editLink = route('product.edit', $row->product__ID);
                         $deleteLink = route('product.destroy', $row->product__ID);
                         $manageFileLink = route('upload-related-document.create', $row->product__ID);
-                        $addStandardLink = "";
-
+                        $addStandardLink = route('product.standard.index', $row->product__ID);
                         
                         // Returning the HTML for the action column
                         return '
@@ -62,6 +61,7 @@ class Product extends Model
                                     <a class="dropdown-item" href="' . $editLink . '"><i class="bx bx-edit-alt me-2"></i> Edit</a>
                                     <a class="dropdown-item" href="' . $deleteLink . '"><i class="bx bx-trash me-2"></i> Delete</a>
                                     <a class="dropdown-item" href="' . $manageFileLink . '"><i class="bx bx-file-blank me-2"></i> Manage file</a>  
+                                    <a class="dropdown-item" href="' . $addStandardLink . '"><i class="bx bx-list-plus me-2"></i> Add Standard</a>  
                                 </div>
                             </div>
                         ';
@@ -356,5 +356,83 @@ class Product extends Model
         }
     }
 
+    public function getStandard(){
+        try {
+            $standards = DB::table('testfabrics_standards')
+                            ->select("standards__ID as id","standards__Name as name")
+                            ->get();
+            return $standards;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+
+    public function getProductByStandardForDataTable($id){
+        try {
+
+            $query = DB::table('testfabrics_pro_standard_method as tpsm')
+                ->join('testfabrics_standards as ts', 'tpsm.pro__Standard_id', '=', 'ts.standards__ID')
+                ->join('testfabrics_methods as tm', 'tpsm.pro__Method_id', '=', 'tm.methods__ID')
+                ->select(
+                    'tpsm.*', 
+                    'ts.standards__ID',
+                    'ts.standards__Name',
+                    'tm.methods__Name',
+                    'tm.methods__ID'
+                )
+                ->where('tpsm.pro__Product_id', $id);
+    
+            return DataTables::of($query)
+                ->order(function ($query) {
+                    $query->orderBy('ts.standards__Name', 'asc');
+                })
+                ->addColumn('action', function ($row) use ($id) {
+                    $delete_link = route('product.standard.destroy', $row->pro__ID);
+                    $edit_link = '';
+
+                    return view('components.action-button', compact('delete_link','edit_link'))->render();
+                })
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make(true);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+
+    // This method saves the product standard methods
+    public function saveProductStandardMethods($productId, $standardId){
+        // Get all methods related to the provided standard_id
+        $methods = DB::table('testfabrics_methods')
+            ->where('methods__Standard_id', $standardId)
+            ->pluck('methods__ID');
+
+        // Prepare the data to be inserted into testfabrics_pro_standard_method
+        $data = [];
+        foreach ($methods as $methodId) {
+            $data[] = [
+                'pro__Product_id' => $productId,
+                'pro__Standard_id' => $standardId,
+                'pro__Method_id' => $methodId,
+            ];
+        }
+
+        // Insert the methods for the product into testfabrics_pro_standard_method
+        if (!empty($data)) {
+            DB::table('testfabrics_pro_standard_method')->insert($data);
+        } else {
+            throw new \Exception('No methods found for this standard');
+        }
+    }
+    
+    public function deleteProductStandard($id){
+        try {
+            $result = DB::delete("DELETE FROM testfabrics_pro_standard_method WHERE pro__ID = ?",[$id]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 
 }
