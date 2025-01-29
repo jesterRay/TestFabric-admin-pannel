@@ -80,7 +80,8 @@
                                     class="form-control" 
                                     type="file" 
                                     id="imgfile" 
-                                    name="imgfile" 
+                                    name="imgfile"
+                                    accept=".jpg"
                                     onchange="previewImage(event)"
                                 >
                             </div>

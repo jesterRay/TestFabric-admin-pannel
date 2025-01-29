@@ -72,7 +72,7 @@
                                 <div class="my-3">
                                     <img id="imgPreview" src="#" alt="Selected Image" style="display: none; max-width: 100%; height: auto;" />
                                 </div>
-                                <input class="form-control" type="file" id="imgfile" name="imgfile" onchange="previewImage(event)">
+                                <input class="form-control" type="file" id="imgfile" name="imgfile" accept=".jpg" onchange="previewImage(event)">
                             </div>
                         </div>
                     </div>
