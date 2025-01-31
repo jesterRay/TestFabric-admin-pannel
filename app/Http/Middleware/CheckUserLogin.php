@@ -17,7 +17,7 @@ class CheckUserLogin
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
-            return redirect()->route('login');
+            return redirect()->route('login')->with('error','First authenticate to access the page');
         }
         
         return $next($request);

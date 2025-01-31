@@ -51,7 +51,8 @@ class Country extends Model
     public function getCountryForDataTable($id){
         try {
             $countries = $this->getCountry($id);
-            return DataTables::of($countries)
+            $query = DB::table('testfabrics_map_countries')->where('countries__Map_ID','=',$id);
+            return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
                 $edit_link = route('country.edit', $row->countries__ID); // Changed to country

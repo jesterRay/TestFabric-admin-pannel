@@ -42,8 +42,8 @@ class Standard extends Model
     // get Standard and format it into DataTable format 
     public function getStandardForDataTable(){
         try {
-            $standards = $this->getStandard();
-            return DataTables::of($standards)
+            $query = DB::table('testfabrics_standards');
+            return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
                 $edit_link = route('standard.edit', $row->standards__ID);

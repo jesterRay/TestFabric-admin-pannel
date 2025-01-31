@@ -36,6 +36,7 @@
             $jq('.data-table').DataTable({
                 processing: true,
                 serverSide: true,
+                order: [[1, "asc"]],
                 ajax: route,
                 columns: columns
             });

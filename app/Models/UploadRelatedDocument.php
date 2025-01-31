@@ -13,9 +13,6 @@ class UploadRelatedDocument extends Model
         try {
             $query = DB::table('testfabrics_files');
             return DataTables::of($query)
-                ->order(function ($query) {
-                    $query->orderBy('files__Name', 'asc');
-                })
                 ->addIndexColumn()
                 ->addColumn('file',function($row){
                     return $row->files__Name . "." . $row->files__Ext;

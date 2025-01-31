@@ -13,7 +13,7 @@
         :createLink="route('interest-group.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "menu_Name", "name" => "menu_Name"],
             ["data" => "menu_Order", "name" => "menu_Order"],
             ["data" => "menu_Status", "name" => "menu_Status"],

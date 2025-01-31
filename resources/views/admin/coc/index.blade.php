@@ -13,9 +13,9 @@
             createLinkText="New"
             :route="route('coc.index')"
             :columns='[
-                ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+                ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false,"orderable" => false],
                 ["data" => "files__Name", "name" => "files__Name"],
-                ["data" => "files__download_name", "name" => "files__download_name"],
+                ["data" => "files__download_name", "name" => "files__download_name","orderable" => false],
                 ["data" => "action", "name" => "action", "orderable" => false, "searchable" => false]
             ]'
         />

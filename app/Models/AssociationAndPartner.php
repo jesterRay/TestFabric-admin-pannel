@@ -63,12 +63,12 @@ class AssociationAndPartner extends Model
     // get associtaion and partner and format it into DataTable format 
     public function getPartnerForDataTable(){
         try {
-            $associationsAndPartners = $this->getPartner();
-            return DataTables::of($associationsAndPartners)
+            $query = DB::table('testfabtics_associations_and_partners');
+            return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
-                $edit_link = route('association-and-partner.edit', $row->id);
-                $delete_link = route('association-and-partner.destroy', $row->id);
+                $edit_link = route('association-and-partner.edit', $row->associations_and_partners__ID);
+                $delete_link = route('association-and-partner.destroy', $row->associations_and_partners__ID);
                 $view_link = '';
                 return view('components.action-button', 
                             compact('edit_link', 'delete_link', 'view_link'))

@@ -35,8 +35,8 @@ class CountryAgent extends Model
     // Get agents and format them for DataTables
     public function getAgentsForDataTable() {
         try {
-            $agents = $this->getAgents();
-            return DataTables::of($agents)
+            $query = DB::table('testfabrics_country_agents');
+            return DataTables::of($query)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $edit_link = route('country-agent.edit', $row->agent__ID);

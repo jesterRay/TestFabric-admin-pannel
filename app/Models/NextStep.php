@@ -48,8 +48,8 @@ class NextStep extends Model
     // get next step and format it into DataTable format 
     public function getNextStepForDataTable(){
         try {
-            $nextSteps = $this->getNextStep();
-            return DataTables::of($nextSteps)
+            $query = DB::table('testfabtics_nextsteps')->where('cat_name','=','nextstep');
+            return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
                 $edit_link = route('next-step.edit', $row->associations_and_partners__ID);

@@ -12,7 +12,7 @@
         :createLink="route('country-agent.create')"
         createLinkText="Add Agent"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "agent__Name", "name" => "agent__Name"],
             ["data" => "agent__Email", "name" => "agent__Email"],
             ["data" => "agent__Country", "name" => "agent__Country"],

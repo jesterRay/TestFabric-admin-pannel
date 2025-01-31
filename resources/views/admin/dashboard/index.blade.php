@@ -42,7 +42,7 @@
         :thead="['#', 'QR', 'IP', 'Country','City', 'State', 'Location', 'Method', 'Date']" 
         :route="route('verification-history.index')"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false,"orderable" => false],
             ["data" => "QR_CODE", "name" => "QR_CODE"],
             ["data" => "IP", "name" => "IP"],
             ["data" => "country", "name" => "country"],

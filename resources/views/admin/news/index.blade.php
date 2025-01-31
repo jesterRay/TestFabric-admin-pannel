@@ -12,7 +12,7 @@
         :createLink="route('news.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "news__Title", "name" => "news__Title"],
             ["data" => "news__Date", "name" => "news__Date"],
             ["data" => "news__Status", "name" => "news__Status"],

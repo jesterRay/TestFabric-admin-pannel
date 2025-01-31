@@ -13,7 +13,7 @@
             createLinkText="New"
             :route="route('survey.index')"
             :columns='[
-                ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+                ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false,"orderable" => false],
                 ["data" => "title", "name" => "title"],
                 ["data" => "description", "name" => "description"],
                 ["data" => "status", "name" => "status"],

@@ -41,8 +41,8 @@ class Career extends Model
     // get associtaion and partner and format it into DataTable format 
     public function getCareerForDataTable(){
         try {
-            $career = $this->getCareer();
-            return DataTables::of($career)
+            $query = DB::table('testfabrics_career');
+            return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
                 $edit_link = route('career.edit', $row->career__ID);

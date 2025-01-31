@@ -30,9 +30,6 @@ class MinimumOrderQuantity extends Model
         try {
             $query = DB::table('testfabrics_min_quantity');
             return DataTables::of($query)
-                ->order(function ($query) {
-                    $query->orderBy('Min__Name', 'asc');
-                })
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $edit_link = route('min-order-quantity.edit', $row->Min__ID);

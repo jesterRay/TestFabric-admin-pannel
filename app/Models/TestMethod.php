@@ -39,8 +39,8 @@ class TestMethod extends Model
     // get Test Method and format it into DataTable format 
     public function getTestMethodForDataTable(){
         try {
-            $testMethod = $this->getTestMethod();
-            return DataTables::of($testMethod)
+            $query = DB::table('testfabrics_methods');
+            return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
                 $edit_link = route('test-method.edit', $row->methods__ID);

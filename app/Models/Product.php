@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use Yajra\DataTables\Facades\DataTables;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -43,9 +44,6 @@ class Product extends Model
                         );
 
             return DataTables::of($query)
-                    ->order(function ($query) {
-                        $query->orderBy('product__Name', 'asc');
-                    })
                     ->addColumn('action', function($row) {
                         // You can generate the links dynamically, assuming you have the data available
                         // $viewLink = route('survey.view', ['id' => $row->id]);
@@ -470,7 +468,7 @@ class Product extends Model
             } else {
                 $minOrderId = $minOrder->Min__ID ?? null;
             }
-            
+    
             $available = DB::table('testfabrics_available_in')->where('Available__Name', $data[3])->first();
             if (!$available && $data[3]) {
                 $availableId = DB::table('testfabrics_available_in')->insertGetId([
@@ -481,10 +479,11 @@ class Product extends Model
             } else {
                 $availableId = $available->Available__ID ?? null;
             }
-            
+    
             $productNumber = DB::table('testfabrics_product')->where('product__Number', $data[0])->value('product__Number');
-            
+    
             if (!$productNumber && $data[0]) {
+                // Insert new product with default values
                 $productId = DB::table('testfabrics_product')->insertGetId([
                     'product__Number' => $data[0],
                     'product__Name' => $data[1],
@@ -494,13 +493,18 @@ class Product extends Model
                     'product__Description' => $data[2],
                     'product__MOQ' => $minOrderId,
                     'show_product' => 1,
+                    'show_on_app' => 0,
+                    'isEquipment' => 0,
+                    'show_on_home' => 0,
                     'excel' => 1,
+                    'best_seller' => 0,
                     'product__Weight_gm_m2' => $data[5],
                     'product__Weight_Oz_yd2' => $data[6],
                     'product__Width_Cm' => $data[7],
                     'product__Width_Inches' => $data[8],
                 ]);
             } else {
+                // Update only relevant fields, leaving show_product, show_on_app, etc., unchanged
                 DB::table('testfabrics_product')->where('product__Number', $data[0])->update([
                     'product__Name' => $data[1],
                     'product__Category_Name' => $subcategoryName[1],
@@ -508,7 +512,6 @@ class Product extends Model
                     'product__MOQ' => $minOrderId,
                     'product__Available' => $availableId,
                     'product__Description' => $data[2],
-                    'excel' => 1,
                     'product__Weight_gm_m2' => $data[5],
                     'product__Weight_Oz_yd2' => $data[6],
                     'product__Width_Cm' => $data[7],
@@ -519,7 +522,9 @@ class Product extends Model
             throw new \Exception('Error processing CSV: '.$e->getMessage());
         }
     }
+    
 
+    // export product data
     public function exportToExcel($subcategoryID) {
         try {
             // Fetch subcategory name

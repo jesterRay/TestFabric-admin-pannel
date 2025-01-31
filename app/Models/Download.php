@@ -14,10 +14,7 @@ class Download extends Model
         try {
             $query = DB::table('testfabrics_downloads');
 
-            return DataTables::of($query)
-                ->order(function ($query){
-                    $query->orderBy('files__Name', 'asc');
-                })            
+            return DataTables::of($query)          
                 ->addColumn('action', function($row) {
                     $edit_link = "";
                     $delete_link = route('download.destroy', $row->files__ID);

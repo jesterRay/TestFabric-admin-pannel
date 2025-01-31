@@ -12,7 +12,7 @@
         :createLink="route('min-order-quantity.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false, "orderable" => false],
             ["data" => "Min__Name", "name" => "Min__Name"],
             ["data" => "Min__Status", "name" => "Min__Status"],
             ["data" => "action", "name" => "action", "orderable" => false, "searchable" => false]

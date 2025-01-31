@@ -31,8 +31,8 @@ class Continent extends Model
     // get Continent and format it into DataTable format
     public function getContinentForDataTable(){
         try {
-            $continents = $this->getContinent();
-            return DataTables::of($continents)
+            $query = DB::table('testfabrics_map');
+            return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('country',function($row){
                 $link = route('country.index', $row->map__ID); // Replace 'country.show' with your actual route

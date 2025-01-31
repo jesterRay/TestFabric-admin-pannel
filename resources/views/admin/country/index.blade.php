@@ -13,7 +13,7 @@
         :createLink="route('country.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "countries__Name", "name" => "countries__Name"],
             ["data" => "action", "name" => "action", "orderable" => false, "searchable" => false]
         ]'

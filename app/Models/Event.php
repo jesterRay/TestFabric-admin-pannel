@@ -43,8 +43,9 @@ class Event extends Model
     // Get events and format them into DataTable format
     public function getEventsForDataTable(){
         try {
-            $events = $this->getEvent();
-            return DataTables::of($events)
+            
+            $query = DB::table('testfabtics_events');
+            return DataTables::of($query)
                 ->addIndexColumn()
                 ->addColumn('action', function($row) {
                     $edit_link = route('event.edit', $row->events__ID);

@@ -29,8 +29,8 @@ class QuickLink extends Model
     
     public function getQuickLinksForDataTable(){
         try {
-            $quickLinks = $this->getQuickLinks();
-            return DataTables::of($quickLinks)
+            $query = DB::table('testfabrics_usefullinks');
+            return DataTables::of($query)
                 ->addIndexColumn()
                 ->addColumn('action', function($row) {
                     $edit_link = route('quick-link.edit', $row->links__ID);

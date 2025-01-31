@@ -14,8 +14,9 @@ class Coc extends Model
     }
 
     public function getCocForDataTable(){
-        $coc = $this->getCoc();
-        return DataTables::of($coc)
+        $query = DB::table('testfabrics_coc');
+
+        return DataTables::of($query)
         ->addIndexColumn()
         ->addColumn('files__download_name',function($row){
             $view_link = url('cocfiles/' . $row->files__download_name);

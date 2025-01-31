@@ -31,9 +31,6 @@ class SubCategory extends Model
                 );
     
             return DataTables::of($query)
-                ->order(function ($query) {
-                    $query->orderBy('subcategory__Name', 'asc');
-                })
                 ->addColumn('action', function ($row) {
                     $edit_link = route('sub-category.edit', $row->subcategory__ID);
                     $delete_link = route('sub-category.destroy', $row->subcategory__ID);

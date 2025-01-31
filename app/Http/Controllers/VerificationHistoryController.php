@@ -11,10 +11,8 @@ class VerificationHistoryController extends Controller
     public function index(Request $request){
 
         if($request->ajax()){
-            $verification_history = (new VerificationHistory)->getAll();
-            return DataTables::of($verification_history)
-                            ->addIndexColumn()
-                            ->make(true);
+            $verification_history = (new VerificationHistory)->getVerificationHistoryForDataTable();
+            return $verification_history;
         }
 
         $countries = (new VerificationHistory)->getCountries();

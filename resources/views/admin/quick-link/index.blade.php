@@ -13,7 +13,7 @@
         :createLink="route('quick-link.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "links__Title", "name" => "links__Title"],
             ["data" => "links__Sequence", "name" => "links__Sequence"],
             ["data" => "links__Status", "name" => "links__Status"],

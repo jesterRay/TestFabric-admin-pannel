@@ -12,7 +12,7 @@
       :createLink="route('product.create')"
       createLinkText="Add"
       :columns='[
-          ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false],
+          ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
           ["data" => "product__Name", "name" => "product__Name"],
           ["data" => "product__Number", "name" => "product__Number"],
           ["data" => "category_name", "name" => "category_name", "searchable" => false],  // Correct reference to category_name

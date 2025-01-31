@@ -16,18 +16,18 @@
     <div class="card mb-6">
         <div class="card-body pt-4">
           <div class="card-title text-primary h4 mb-6">Import Product From Excelsheet</div>
-          <form method="POST" action="{{ route('product.import.save') }}">
+          <form method="POST" action="{{ route('product.import.save') }}" enctype="multipart/form-data">
             @csrf
             <div class="row g-6">
 
                 <!-- Subcategory Dropdown -->
                 <div class="col-md-6">
                     <x-select-two-drop-down
-                        name="subcategory"
+                        name="product__Subcategory_Name"
                         title="Subcategory *"
                         placeholder="Select..."
                         :options="$subcategories"
-                        :selected="old('subcategory')"
+                        :selected="old('product__Subcategory_Name')"
                         :multiple="false"
                     />
                 </div>
@@ -39,7 +39,7 @@
                         class="form-control" 
                         type="file" 
                         id="excel_file" 
-                        name="excel_file"
+                        name="ufile"
                         accept=".xlsx"
                     />
                 </div>

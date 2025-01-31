@@ -12,7 +12,7 @@
         :createLink="route('price-break-up.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false, "orderable" => false],
             ["data" => "price__Title", "name" => "price__Title"],
             ["data" => "price__Units", "name" => "price__Units"],
             ["data" => "price__Status", "name" => "price__Status"],

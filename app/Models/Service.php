@@ -38,8 +38,8 @@ class Service extends Model
     
     public function getServicesForDataTable(){
         try {
-            $services = $this->getServices();
-            return DataTables::of($services)
+            $query = DB::table('testfabtics_services')->where('cat_name','=','services');
+            return DataTables::of($query)
                                 ->addIndexColumn()
                                 ->addColumn('action', function($row) {
                                     $edit_link = route('service.edit', $row->associations_and_partners__ID); 

@@ -33,7 +33,7 @@ class StandardController extends Controller
                 'standards__Name' => 'required|string|max:255',
                 'standards__Sequence' => 'required|numeric',
                 'standards__Status' => 'required|string|in:Show,Hide',
-                'imgfile' => 'required|image|mimes:jpg,gif|max:2048', // Validate image
+                'imgfile' => 'required|image|mimes:jpg|max:2048', // Validate image
             ]);
 
             // Call the model function to save the data

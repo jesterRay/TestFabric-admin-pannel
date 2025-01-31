@@ -15,8 +15,8 @@ class Chat extends Model
     }
  
     public function getChatsForDatatable(){
-        $chats = $this->getChats();
-        return DataTables::of($chats)
+        $query = DB::table('chat_users');
+        return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
                 
@@ -58,9 +58,6 @@ class Chat extends Model
                     ->update(['status' => 0]);
         return $updated; 
     }
-
-
-
 
     public function sendNotification($fcmToken, $message, $deviceToken = null){
         try {

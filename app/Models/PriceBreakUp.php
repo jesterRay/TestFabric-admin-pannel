@@ -33,9 +33,6 @@ class PriceBreakUp extends Model
         try {
             $query = DB::table('testfabrics_price_breakup');
             return DataTables::of($query)
-                ->order(function ($query) {
-                    $query->orderBy('price__Title', 'asc');
-                })
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $edit_link = route('price-break-up.edit', $row->price__ID);

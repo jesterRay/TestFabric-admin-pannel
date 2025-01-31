@@ -30,9 +30,6 @@ class AvailableIn extends Model
         try {
             $query = DB::table('testfabrics_available_in');
             return DataTables::of($query)
-                ->order(function ($query) {
-                    $query->orderBy('Available__Name', 'asc');
-                })
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $edit_link = route('available-in.edit', $row->Available__ID);

@@ -12,7 +12,7 @@
         :createLink="route('sub-category.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "subcategory__Name", "name" => "subcategory__Name"],
             ["data" => "category__Name", "name" => "category__Name", "searchable" => false], // Updated for the joined column
             ["data" => "subcategory__Sequence", "name" => "subcategory__Sequence"],

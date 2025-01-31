@@ -33,9 +33,6 @@ class Unit extends Model
         try {
             $query = DB::table('testfabrics_price_units');
             return DataTables::of($query)
-                ->order(function ($query) {
-                    $query->orderBy('priceunit__Name', 'asc');
-                })
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $edit_link = route('unit.edit', $row->priceunit__ID);

@@ -6,13 +6,13 @@
 <div class="row">
   <div class="col-12">
     <x-table 
-        title="Career Management"
+        title="Master Category Management"
         :thead="['#', 'Category Name', 'Category Sequence', 'Card View', 'Status', 'Actions']" 
         :route="route('category.index')"
         :createLink="route('category.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false, "orderable" => false],
             ["data" => "category__Name", "name" => "category__Name"],
             ["data" => "category__Sequence", "name" => "category__Sequence"],
             ["data" => "card_view", "name" => "card_view"],

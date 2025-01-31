@@ -7,7 +7,7 @@
       "slug": "verification-history.index"      
     },
     {
-      "url": "/profile",
+      "url": "/user/profile",
       "name": "Profile",
       "icon": "menu-icon tf-icons bx bx-user",
       "slug": "profile"      
@@ -206,7 +206,7 @@
           "slug": "service.index"
         },
         {
-          "url": "/flyer",
+          "url": "/flyer/index",
           "name": "Flyer Upload",
           "slug": "flyer.index"
         }

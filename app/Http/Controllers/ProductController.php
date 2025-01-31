@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ProductController extends Controller
 {
@@ -55,7 +56,7 @@ class ProductController extends Controller
                 'product__Weight_Oz_yd2' => 'nullable|numeric',
                 'product__Width_Cm' => 'nullable|numeric',
                 'product__Width_Inches' => 'nullable|numeric',
-                'product__Available' => 'nullable|numeric',
+                'product__Available' => 'required|numeric',
                 'product__MOQ' => 'nullable|numeric',
                 'show_product' => 'required|numeric|in:0,1',
                 'show_on_app' => 'required|numeric|in:0,1',
@@ -275,7 +276,7 @@ class ProductController extends Controller
             $file->move(public_path('csv'), $filename);
             
             $newCsvFile = public_path('csv/'.rand().'.csv');
-            Product::convertXLStoCSV($filePath, $newCsvFile);
+            (new Product)->convertXLStoCSV($filePath, $newCsvFile);
             
             $spreadsheet = IOFactory::load($filePath);
             $images = [];
@@ -315,9 +316,9 @@ class ProductController extends Controller
             unlink($filePath);
             unlink($newCsvFile);
             
-            return redirect()->route('upload_product_data')->with('success', 'File uploaded successfully!');
+            return redirect()->back()->with('success', 'File uploaded successfully!');
         } catch (\Exception $e) {
-            return redirect()->route('upload_product_data')->with('error', 'Error: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Error: '.$e->getMessage())->withInput();
         }
     }
 

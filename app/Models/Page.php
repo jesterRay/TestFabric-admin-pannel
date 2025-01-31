@@ -36,7 +36,8 @@ class Page extends Model
     public function getPagesForDataTable() {
         try {
             $pages = $this->getPages();
-            return DataTables::of($pages)
+            $query = DB::table('testfabrics_pages');
+            return DataTables::of($query)
                 ->addIndexColumn()
                 ->addColumn('action', function($row) {
                     $edit_link = route('page.edit', $row->page_id);

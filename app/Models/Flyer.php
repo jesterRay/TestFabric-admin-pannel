@@ -42,8 +42,8 @@ class Flyer extends Model
     // get Flyer and format it into DataTable format 
     public function getFlyerForDataTable(){
         try {
-            $flyers = $this->getFlyer();
-            return DataTables::of($flyers)
+            $query = DB::table('testfabrics_files1');
+            return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
                 $edit_link = "";

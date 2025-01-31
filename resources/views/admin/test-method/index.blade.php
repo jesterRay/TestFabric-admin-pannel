@@ -13,7 +13,7 @@
         :createLink="route('test-method.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "methods__Name", "name" => "methods__Name"],
             ["data" => "methods__Sequence", "name" => "methods__Sequence"],
             ["data" => "methods__Status", "name" => "methods__Status"],

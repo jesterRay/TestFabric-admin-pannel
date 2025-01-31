@@ -98,8 +98,8 @@ class Survey extends Model
 
     public function surveysForDataTable(){
         try {
-            $surveys = $this->getSurveys();
-            return DataTables::of($surveys)
+            $query = DB::table('surveys');
+            return DataTables::of($query)
                 ->addIndexColumn()
                 ->addColumn('action', function($row) {
                     // You can generate the links dynamically, assuming you have the data available

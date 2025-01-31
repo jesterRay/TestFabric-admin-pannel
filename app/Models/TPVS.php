@@ -91,8 +91,8 @@ class TPVS extends Model
     // get Standard and format it into DataTable format 
     public function getTPVSInfoForDataTable(){
         try {
-            $data = $this->getTPVSInfo();
-            return DataTables::of($data)
+            $query = DB::table('testfabrics_tpvs_data');
+            return DataTables::of($query)
             ->addIndexColumn()
             ->make(true);
 
@@ -141,12 +141,6 @@ class TPVS extends Model
             $query = DB::table('testfabrics_tpvs');
 
             return DataTables::of($query)
-                ->order(function ($query) use ($request) {
-                    // Handle default ordering if no column specified
-                    if (!$request->has('order')) {
-                        $query->orderBy('tpvs__ID', 'asc');
-                    }
-                })
                 ->addColumn('is_checked', function($row) {
                     return '<input 
                                 type="checkbox" 

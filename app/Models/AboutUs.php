@@ -41,12 +41,12 @@ class AboutUs extends Model
 
     public function getAboutUsForDataTable(){
         try {
-            $aboutUs = $this->getAboutUs();
-            return DataTables::of($aboutUs)
+            $query = DB::table('testfabtics_services')->where('cat_name','=','aboutus');
+            return DataTables::of($query)
                                 ->addIndexColumn()
                                 ->addColumn('action', function($row) {
-                                    $edit_link = route('about-us.edit', $row->id); 
-                                    $delete_link = route('about-us.destroy', $row->id);
+                                    $edit_link = route('about-us.edit', $row->associations_and_partners__ID); 
+                                    $delete_link = route('about-us.destroy', $row->associations_and_partners__ID);
                                     $view_link = '';
                                     return view('components.action-button', 
                                                 compact('edit_link', 'delete_link', 'view_link'))

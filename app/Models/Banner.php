@@ -22,8 +22,8 @@ class Banner extends Model
     // get banners and format it into DataTable format 
     public function getBannerForDataTable(){
         try {
-            $banner = $this->getBanner();
-            return DataTables::of($banner)
+            $query = DB::table('testfabrics_banners');          
+            return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('product_image', function ($row) {
                 // Assuming the image path is stored in $row->files__picture

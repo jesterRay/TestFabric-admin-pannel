@@ -72,10 +72,7 @@ class MasterCategory extends Model
         try {
 
             $query = DB::table('testfabrics_category');
-            return DataTables::of($query)
-                ->order(function ($query){
-                    $query->orderBy('category__Name', 'asc');
-                })            
+            return DataTables::of($query)          
                 ->addColumn('action', function($row) {
                     $edit_link = route('category.edit', $row->category__ID);
                     $delete_link = route('category.destroy', $row->category__ID);

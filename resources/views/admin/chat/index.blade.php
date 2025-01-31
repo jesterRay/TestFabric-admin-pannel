@@ -11,7 +11,7 @@
             :thead="['#', 'Name', 'Email', 'Actions']" 
             :route="route('chat.index')"
             :columns='[
-                ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+                ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false,"orderable" => false],
                 ["data" => "name", "name" => "name"],
                 ["data" => "email", "name" => "email"],
                 ["data" => "action", "name" => "action", "orderable" => false, "searchable" => false]

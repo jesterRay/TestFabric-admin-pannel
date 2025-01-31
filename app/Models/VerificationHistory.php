@@ -4,12 +4,25 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Yajra\DataTables\Facades\DataTables;
 
 class VerificationHistory extends Model
 {
     public function getAll(){
         $verification_history = DB::select("Select QR_CODE, IP, country, state,city,location,date_time,method FROM verification_history");
         return $verification_history;
+    }
+
+    public function getVerificationHistoryForDataTable(){
+        try {
+            $query = DB::table('verification_history');
+    
+            return DataTables::of($query)
+                ->addIndexColumn()
+                ->make(true);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     public function getCountries(){
@@ -36,8 +49,7 @@ class VerificationHistory extends Model
         return $countryCountData;
     }
 
-    public function getVerificationCount()
-    {
+    public function getVerificationCount(){
         $validCount = DB::select("SELECT COUNT(*) as count FROM verification_history WHERE valid = 2");
         $invalidCount = DB::select("SELECT COUNT(*) as count FROM verification_history WHERE valid = 0");
 

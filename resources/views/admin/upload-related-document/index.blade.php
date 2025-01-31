@@ -12,8 +12,8 @@
         :createLink="route('upload-related-document.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false],
-            ["data" => "file", "name" => "file","searchable" => true],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false, "orderable" => false],
+            ["data" => "file", "name" => "file","searchable" => true, "orderable" => false],
             ["data" => "files__Product", "name" => "files__Product","searchable" => true],
             ["data" => "action", "name" => "action", "orderable" => false, "searchable" => false]
         ]'

@@ -44,9 +44,6 @@ class News extends Model
         try {
             $query = DB::table('testfabrics_news');
             return DataTables::of($query)
-                ->order(function ($query) {
-                    $query->orderBy('news__Title', 'asc');
-                })
                 ->addIndexColumn()
                 ->addColumn('action', function($row) {
                     $edit_link = route('news.edit', $row->news__ID);
@@ -166,9 +163,6 @@ class News extends Model
         try {
             $query = DB::table("testfabrics_newsletters")->select("newsletter__Email");
             return DataTables::of($query)
-            ->order(function ($query) {
-                $query->orderBy('newsletter__Email', 'asc');
-            })
             ->addIndexColumn()
             ->make(true);
 

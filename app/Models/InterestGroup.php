@@ -42,8 +42,8 @@ class InterestGroup extends Model
     // get associtaion and partner and format it into DataTable format 
     public function getInterestGroupForDataTable(){
         try {
-            $interestGroups = $this->getInterestGroup();
-            return DataTables::of($interestGroups)
+            $query = DB::table('testfabtics_product_menu');
+            return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function($row) {
                 $edit_link = route('interest-group.edit', $row->menu_Id);

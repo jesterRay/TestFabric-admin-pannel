@@ -13,9 +13,9 @@
         :createLink="route('banner.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "files__Name", "name" => "files__Name"],
-            ["data" => "product_image", "name" => "product_image"],
+            ["data" => "product_image", "name" => "product_image", "searchable" => false, "orderable" => false],
             ["data" => "action", "name" => "action", "orderable" => false, "searchable" => false]
         ]'
     />

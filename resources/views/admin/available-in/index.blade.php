@@ -12,7 +12,7 @@
         :createLink="route('available-in.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex","searchable" => false, "orderable" => false],
             ["data" => "Available__Name", "name" => "Available__Name"],
             ["data" => "Available__Status", "name" => "Available__Status"],
             ["data" => "action", "name" => "action", "orderable" => false, "searchable" => false]

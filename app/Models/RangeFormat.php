@@ -33,9 +33,6 @@ class RangeFormat extends Model
         try {
             $query = DB::table('testfabrics_range_format');
             return DataTables::of($query)
-                ->order(function ($query) {
-                    $query->orderBy('rangeformat__Name', 'asc');
-                })
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
                     $edit_link = route('range-format.edit', $row->rangeformat__ID);

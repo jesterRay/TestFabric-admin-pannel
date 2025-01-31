@@ -12,7 +12,7 @@
         :createLink="route('event.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "events__Name", "name" => "events__Name"],
             ["data" => "events__Abbriviation", "name" => "events__Abbriviation"],
             ["data" => "events__Url", "name" => "events__Url"],

@@ -11,10 +11,10 @@
         :thead="['#', 'Serial','Status','Is Checked']" 
         :route="route('tpvs.serial.index')"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "tpvs__serial", "name" => "tpvs__serial"],
             ["data" => "status", "name" => "status"],
-            ["data" => "is_checked", "name" => "is_checked"]
+            ["data" => "is_checked", "name" => "is_checked", "orderable" => false, "searchable" => false]
         ]'
     />
     

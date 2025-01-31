@@ -11,7 +11,7 @@
         :thead="['#', 'Serial','IP','City','State','Country','Country Code']" 
         :route="route('tpvs.info')"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "tpvs__serial", "name" => "tpvs__serial"],
             ["data" => "Ip", "name" => "Ip"],
             ["data" => "City", "name" => "City"],

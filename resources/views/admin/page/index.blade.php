@@ -12,7 +12,7 @@
         :createLink="route('page.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "page_name", "name" => "page_name"],
             ["data" => "page_title", "name" => "page_title"],
             ["data" => "action", "name" => "action", "orderable" => false, "searchable" => false]

@@ -13,7 +13,7 @@
         :createLink="route('standard.create')"
         createLinkText="Add"
         :columns='[
-            ["data" => "DT_RowIndex", "name" => "DT_RowIndex"],
+            ["data" => "DT_RowIndex", "name" => "DT_RowIndex", "searchable" => false, "orderable" => false],
             ["data" => "standards__Name", "name" => "standards__Name"],
             ["data" => "standards__Status", "name" => "standards__Status"],
             ["data" => "action", "name" => "action", "orderable" => false, "searchable" => false]
