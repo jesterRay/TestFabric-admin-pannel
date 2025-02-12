@@ -1,0 +1,22 @@
+[20-Nov-2022 05:06:05 America/Chicago] PHP Fatal error:  Call to a member function bind_param() on boolean in /home2/tfdotcom/public_html/scanner/apis/include/DbHandler.php on line 21
+[20-Nov-2022 05:06:35 America/Chicago] PHP Fatal error:  Call to a member function bind_param() on boolean in /home2/tfdotcom/public_html/scanner/apis/include/DbHandler.php on line 21
+[31-Dec-2022 06:51:28 America/Chicago] PHP Fatal error:  Call to a member function bind_param() on boolean in /home2/tfdotcom/public_html/scanner/apis/include/DbHandler.php on line 65
+[05-Jul-2023 07:40:28 America/Chicago] PHP Fatal error:  Call to undefined function test_input() in /home2/tfdotcom/public_html/scanner/apis/device/index.php on line 101
+[05-Jul-2023 07:42:26 America/Chicago] PHP Fatal error:  Call to undefined function test_input() in /home2/tfdotcom/public_html/scanner/apis/device/index.php on line 101
+[05-Jul-2023 07:43:08 America/Chicago] PHP Fatal error:  Call to undefined function test_input() in /home2/tfdotcom/public_html/scanner/apis/device/index.php on line 101
+[05-Jul-2023 07:44:07 America/Chicago] PHP Fatal error:  Call to undefined function test_input() in /home2/tfdotcom/public_html/scanner/apis/device/index.php on line 101
+[05-Jul-2023 07:44:35 America/Chicago] PHP Fatal error:  Call to undefined function test_input() in /home2/tfdotcom/public_html/scanner/apis/device/index.php on line 101
+[05-Jul-2023 07:45:59 America/Chicago] PHP Warning:  Uncaught exception 'ErrorException' with message 'require(../../PHPMailer-master/PHPMailerAutoload.php): failed to open stream: No such file or directory' in /home2/tfdotcom/public_html/scanner/apis/include/DbHandler.php:42
+Stack trace:
+#0 /home2/tfdotcom/public_html/scanner/apis/include/DbHandler.php(42): Slim\Slim::handleErrors(2, 'require(../../P...', '/home2/tfdotcom...', 42, Array)
+#1 /home2/tfdotcom/public_html/scanner/apis/include/DbHandler.php(42): DbHandler::send_email()
+#2 /home2/tfdotcom/public_html/scanner/apis/device/index.php(111): DbHandler->send_email('ahsanshoaib.099...')
+#3 [internal function]: {closure}()
+#4 /home2/tfdotcom/public_html/scanner/apis/libs/Slim/Route.php(436): call_user_func_array(Object(Closure), Array)
+#5 /home2/tfdotcom/public_html/scanner/apis/libs/Slim/Slim.php(1307): Slim\Route->dispatch()
+#6 /home2/tfdotcom/public_html/scanner/apis/libs/Slim/Middleware/Flash.php(85): Slim\Slim->call()
+#7 /home2/tfdotcom/public_html/scanner/apis/libs/Slim/Middleware/MethodOverride.php(92 in /home2/tfdotcom/public_html/scanner/apis/include/DbHandler.php on line 42
+[05-Jul-2023 07:45:59 America/Chicago] PHP Fatal error:  DbHandler::send_email(): Failed opening required '../../PHPMailer-master/PHPMailerAutoload.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home2/tfdotcom/public_html/scanner/apis/include/DbHandler.php on line 42
+[09-Jul-2023 05:08:26 America/Chicago] PHP Fatal error:  Call to undefined function verifyRequiredParamsjson() in /home2/tfdotcom/public_html/scanner/apis/device/index.php on line 101
+[09-Jul-2023 05:09:27 America/Chicago] PHP Fatal error:  Call to undefined function verifyRequiredParamsjson() in /home2/tfdotcom/public_html/scanner/apis/device/index.php on line 101
+[11-Jan-2024 08:22:15 America/Chicago] PHP Fatal error:  Call to a member function bind_param() on boolean in /home2/tfdotcom/public_html/scanner/apis/include/DbHandler.php on line 42

@@ -41,7 +41,12 @@ class Coc extends Model
     
     public function saveCoc($file_name,$file_download_name){
         $isSaved = DB::insert(
-                        "INSERT INTO testfabrics_coc SET files__Name = ?, files__download_name = ?",
+                        "INSERT INTO testfabrics_coc SET 
+                            files__Name = ?, 
+                            files__download_name = ?,
+                            files__picture = '',
+                            files__Ext = '',
+                            files__Description",
                         [$file_name,$file_download_name]
                     );
 

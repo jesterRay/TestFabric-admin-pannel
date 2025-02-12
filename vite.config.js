@@ -72,7 +72,13 @@ export default defineConfig({
     html()
   ],
   build: {
-    // Ensure proper chunk loading
+
+    outDir: 'public/build',
+    // Ensure assets are properly referenced
+    assetsDir: 'assets',
+    // Add base path for production
+    base: '/admin/public/build/',
+
     rollupOptions: {
       output: {
         manualChunks: {

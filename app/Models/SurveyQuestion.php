@@ -35,6 +35,7 @@ class SurveyQuestion extends Model
             throw $e;
         }
     }
+    
     public function getQuestions($id){
         try {
             $result = null;

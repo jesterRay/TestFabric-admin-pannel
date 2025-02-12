@@ -20,7 +20,7 @@
 <!-- Pricing Modal JS-->
 @stack('pricing-script')
 
-<!-- END: Pricing Modal JS-->
+<!-- END: Pricing Modal JS-->     
 <!-- BEGIN: Page JS-->
 @yield('page-script')
 <!-- END: Page JS-->

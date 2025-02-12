@@ -82,6 +82,7 @@ class SurveyResponseController extends Controller
     
         DB::beginTransaction();
     
+        
         try {
             // Insert a new row into survey_responses and get the inserted response_id
             $responseId = DB::table('survey_responses')->insertGetId([

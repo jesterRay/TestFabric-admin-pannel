@@ -92,7 +92,7 @@ class TPVS extends Model
     public function getTPVSInfoForDataTable(){
         try {
             $query = DB::table('testfabrics_tpvs_data');
-            return DataTables::of($query)
+            return DataTables::of($query) 
             ->addIndexColumn()
             ->make(true);
 

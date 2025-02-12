@@ -6,7 +6,7 @@
 
  
 
-
+ 
 @vite(['resources/assets/vendor/fonts/boxicons.scss'])
 
 <!-- Core CSS -->
